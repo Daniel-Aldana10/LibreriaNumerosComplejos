@@ -29,7 +29,7 @@ def complejo(A):
 
 def sumvectores(A,B):
     tam = int(len(A))
-    vect = np.ones(tam, dtype = tuple)
+    vect = [(0, 0) for j in range(tam)]
     for i in range(tam):
         vect[i] = sumacomplejos(A[i], B[i])
     return vect
@@ -43,14 +43,14 @@ def inversoaditivovec(A):
     return A
 def escalarmulvec(A,B):
     tam = int(len(B))
-    vect = np.ones(tam, dtype=tuple)
+    vect = [(0, 0) for j in range(tam)]
     for i in range(tam):
         vect[i] = multiplicacion(A,B[i])
     return vect
 def adicionmatrices(A,B):
     filas = len(A)
     columnas = len(A[0])
-    mat = np.zeros((filas, columnas), dtype= tuple)
+    mat = [[(0, 0) for k in range(columnas)] for j in range(filas)]
     for j in range(filas):
         for k in range(columnas):
             mat[j][k] = sumacomplejos(A[j][k],B[j][k])
@@ -65,22 +65,24 @@ def inversomatriz(A):
 def matrizporescalar(A,B):
     filas = len(B)
     col = len(B[0])
-    mat = np.ones((filas, col), dtype=tuple)
+    mat = [[(0, 0) for k in range(col)] for j in range(filas)]
     if len(A) > 1:
         for j in range(filas):
             for k in range(col):
                 mat[j][k] = multiplicacion(A, B[j][k])
         return mat
 def transpuesta(A):
-    fil = int(len(A))
-    col = int(len(A[0]))
-    mat = np.zeros((col,fil), dtype = tuple)
-    for j in range(col):
-        for k in range(fil):
-            mat[j][k] = A[k][j]
-    return mat
+    try:
+        fil = int(len(A))
+        col = int(len(A[0]))
+        mat = [[(0, 0) for k in range(fil)] for j in range(col)]
+        for j in range(col):
+            for k in range(fil):
+                mat[j][k] = A[k][j]
+        return mat
+    except:
+        return A
 def conjugadavecmat(A):
-
     try:
         fil = (len(A))
         col = len(A[0])
@@ -93,4 +95,65 @@ def conjugadavecmat(A):
         for j in range(fil):
             A[j] = conjudado(A[j])
         return A
+def daga(A):
+    try:
+        fil = (len(A))
+        col = len(A[0])
+        A = transpuesta(A)
+        for j in range(fil):
+            for k in range(col):
+                A[j][k] = conjudado(A[j][k])
+        return A
+    except:
+        fil = int(len(A))
+        for j in range(fil):
+            A[j] = conjudado(A[j])
+        return A
+def accionvecmat(A,B):
+    filA = len(A)
+    colA = len(A[0])
+    filB = len(B)
 
+    if colA == filB:
+        mat = [(0, 0) for j in range(filB)]
+
+        for j in range(filA):
+            for k in range(filB):
+                    mat[j] = sumacomplejos(mat[j], multiplicacion(A[j][k], B[k]))
+        return mat
+def multmatrices(A,B):
+    filA = len(A)
+    colA = len(A[0])
+    filB = len(B)
+    colB = len(B[0])
+    if colA == filB:
+        mat = [[(0,0) for k in range(colB)] for j in range(filA)]
+        for j in range(filA):
+            for k in range(colB):
+                for a in range(colA):
+                    mat[j][k] = sumacomplejos(mat[j][k], multiplicacion(A[j][a], B[a][k]))
+        return mat
+    else:
+        return "error"
+def producintern(A, B):
+
+    res = (0,0)
+    for i in range(len(A)):
+        res = sumacomplejos(res,multiplicacion(conjudado(A[i]),B[i]))
+
+    return res
+def norma(A):
+    res = (0,0)
+    for i in range(len(A)):
+        res = sumacomplejos(res,multiplicacion(conjudado(A[i]), A[i]))
+    return res[0]**(1/2)
+def distancia(A,B):
+    res = [(0,0) for j in range(len(A))]
+    for i in range(len(A)):
+        res[i] = resta(B[i],A[i])
+
+    return norma(res)
+def valorpropio(A,B):
+    resultado = accionvecmat(A,B)
+    escalar = resultado[1][0]/B[0][1]
+    return escalar
