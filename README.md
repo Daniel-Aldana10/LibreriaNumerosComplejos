@@ -1,7 +1,7 @@
 # Librería de números complejos 
 El proyecto presentado a continuación tiene como objetivo el de ser una herramienta para poder realizar operaciones básicas con los números complejos, y tambien en espacios vectoriales complejos.
 # Instalación y requisitos 
-Para ver el funcionamiento del programa desarrollado se necesita descargar los archivos Libreriacomplejos.py y su Test_vector_matirz.py, ademas se necesita un programa como PyCharm, Visual Studio, para poder ver el desarrollo y ejecución del proyecto.
+Para ver el funcionamiento del programa desarrollado se necesita descargar los archivos "Libreriacomplejos.py" y su "Test_vector_matirz.py", ademas se necesita un programa como PyCharm, Visual Studio, para poder ver el desarrollo y ejecución del proyecto.
 # Ejecución de las pruebas 
 Para cada operación ofrecida en esta calculadora básica de complejos, se tienen definidas 2 pruebas, para ver si en principio esta es funcional con la ayuda de la librería unittest comparamos los valores que nos deberían dar en un principio, teniendo solo que dar ejecutar para ver si hay errores.
 # ¿Por qué estas pruebas?
@@ -12,6 +12,6 @@ En división se escogen estas pruebas, ya que sabemos que iba a dar un numero co
 En modulo se escoge el siguiente número (9i) debido a que sabemos que debería dar el 9 debido que la raíz cuadrada de un numero al cuadrado, es el mismo número.
 En conjugado escogemos estos números, debido a que la parte imaginaria no tienen el mismo signo, uno es positivo y otro negativo.
 Usando muchas de las funciones ya establecidas definimos nuevas herramientas para el desarrollo de funciones.
-En la multiplicacion por una escalar/vector, definimos que el escalar puede ser tan solo un real, imaginario o complejo, dandonos en los tres casos correcto, En los inversos se puso tanto componentes de las matrices o vectores con partes solo real, imaginaria o compleja, en los conjugados hicimos un ejemplo tanto con vectores como para matrices.
+En la multiplicacion por una escalar/vector, definimos que el escalar puede ser tan solo un real, imaginario o complejo, dandonos en los tres casos correcto, En los inversos se puso tanto componentes de las matrices o vectores con partes solo real, imaginaria o compleja, en los conjugados hicimos un ejemplo tanto con vectores como para matrices, para producto tensor lo definimos tanto para vectores como para matrices.
 # Autor
 Daniel Fernando Aldana Bueno
