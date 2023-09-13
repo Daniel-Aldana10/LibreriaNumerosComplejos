@@ -187,3 +187,40 @@ class TestStringMethods(unittest.TestCase):
        resultado = 41.0
        valor = lc.valorpropio(matriz, vector)
        self.assertEqual(resultado, valor)
+    def test_unitaria(self):
+        mat = [[(0, 1 / (2) ** (1 / 2)), (0, -1 / (2) ** (1 / 2))],
+              [(0, 1 / (2) ** (1 / 2)), (0, 1 / (2) ** (1 / 2))]]
+        resultado = True
+        unit = lc.unitaria(mat)
+        self.assertEqual(unit, resultado)
+        mat = [[(-1,0),(0,-1)],
+               [(0,1),(1,0)]]
+        resultado = False
+        unit = lc.unitaria(mat)
+        self.assertEqual(unit, resultado)
+    def test_hermitiana(self):
+        mat = [[(-1, 0), (0, -1)],
+                [(0, 1), (1, 0)]]
+        resultado = True
+        her = lc.hermitiana(mat)
+        self.assertEqual(her, resultado)
+        mat = [[(0, 1 / (2) ** (1 / 2)), (0, -1 / (2) ** (1 / 2))],
+               [(0, 1 / (2) ** (1 / 2)), (0, 1 / (2) ** (1 / 2))]]
+        resultado = False
+        her = lc.hermitiana(mat)
+        self.assertEqual(her, resultado)
+    def test_tensor(self):
+        v1 = [(0, 2), (1, 6)]
+        v2 = [(0, 5), (3, 4), (-2, 0)]
+        ten = lc.tensormatvec(v1,v2)
+        resultado = [(-10,0),(-8,6),(0,-4),(-30,5),(-21,22),(-2,-12)]
+        self.assertEqual(ten,resultado)
+        m1 = [[(0, 0), (1, 0)], [(1, 0), (0, 0)]]
+        m2 = [[(1, 0), (1, 1)],
+              [(1, 0), (1, 1)]]
+        resultado = [[(0,0),(0,0),(1,0),(1,1)],
+                     [(0,0),(0,0),(1,0),(1,1)],
+                     [(1,0),(1,1),(0,0),(0,0)],
+                     [(1,0),(1,1),(0,0),(0,0)]]
+        ten = lc.tensormatvec(m1, m2)
+        self.assertEqual(ten, resultado)

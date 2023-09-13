@@ -6,7 +6,7 @@ def sumacomplejos(A, B):
     return real, imaginario
 def multiplicacion(A, B):
     real, imaginario = A[0] * B[0] - A[1] * B[1], A[0] * B[1] + A[1] * B[0]
-    return real, imaginario
+    return round(real,1), imaginario
 def resta(A, B):
     real, imaginario = A[0] - B[0], A[1] - B[1]
     return real, imaginario
@@ -155,5 +155,41 @@ def distancia(A,B):
     return norma(res)
 def valorpropio(A,B):
     resultado = accionvecmat(A,B)
-    escalar = resultado[1][0]/B[0][1]
-    return escalar
+    for j in range(len(resultado)):
+        for k in range(len(resultado[0])):
+            if resultado[j][k] != 0 and B[j][k] != 0:
+                escalar = resultado[j][k]/B[j][k]
+                return escalar
+def unitaria(A):
+    res = multmatrices(daga(A), A)
+    mat = [[(0,0) for k in range(len(res[0]))] for j in range(len(res))]
+    for j in range(len(res)):
+        for k in range(len(res[0])):
+            if j == k:
+                mat[j][k] = (1,0)
+            else:
+                mat[j][k] = (0,0)
+    return mat == res
+def hermitiana(A):
+    B = daga(A)
+    return A == B
+
+def tensormatvec(A,B):
+    try:
+        mat = [[(0,0) for k in range(len(A[0]*len(B[0])))] for j in range(len(A*len(B)))]
+        for j in range(len(mat)):
+            for k in range(len(mat[0])):
+                mat[j][k] = multiplicacion(A[j//len(B)][k//len(A)], B[j%len(B)][k%len(A)])
+        return mat
+    except:
+        vec = [(0,0) for j in range(len(A)*len(B))]
+        j = 0
+        a = 0
+        while j < len(A):
+            for k in range(len(B)):
+                vec[a] = multiplicacion(A[j], B[k])
+                a = a + 1
+            j = j+1
+        return vec
+
+
