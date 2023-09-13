@@ -1,7 +1,7 @@
 # Librería de números complejos 
 El proyecto presentado a continuación tiene como objetivo el de ser una herramienta para poder realizar operaciones básicas con los números complejos, y tambien en espacios vectoriales complejos.
 # Instalación y requisitos 
-Para el manejo de matrices y vectores, usamos para su facilidad la libreria Numpy, por lo que debe estar descargado en su interprete, ademas se necesita un programa como PyCharm, Visual Studio, para poder ver el desarrollo y ejecución del proyecto.
+Para ver el funcionamiento del programa desarrollado se necesita descargar los archivos Libreriacomplejos.py y su Test_vector_matirz.py, ademas se necesita un programa como PyCharm, Visual Studio, para poder ver el desarrollo y ejecución del proyecto.
 # Ejecución de las pruebas 
 Para cada operación ofrecida en esta calculadora básica de complejos, se tienen definidas 2 pruebas, para ver si en principio esta es funcional con la ayuda de la librería unittest comparamos los valores que nos deberían dar en un principio, teniendo solo que dar ejecutar para ver si hay errores.
 # ¿Por qué estas pruebas?
